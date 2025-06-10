@@ -1,47 +1,79 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-import logo from "../assets/logo2.jpg"
+import logo from "../assets/logo3.png";
+import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 
 const Navbar = () => {
-    return (
-        <div className="navbar bg-base-100 shadow-sm">
-  <div className="navbar-start">
-    <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest(".profile-dropdown")) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const toggleDropdown = () => setIsOpen((prev) => !prev);
+
+  return (
+    <div className="navbar bg-base-100 shadow-sm px-4">
+      <div className="navbar-start">
+        <div className="dropdown lg:hidden">
+          <div tabIndex={0} role="button" className="btn btn-ghost">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none"
+              viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </div>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+          >
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/volunteer-posts">All Volunteer Need Posts</Link></li>
+            <li className="dropdown">
+              <div tabIndex={0} className="btn btn-sm">My Profile</div>
+              <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-10 w-52 p-2 shadow-sm">
+                <li><Link to="/add-post">Add Volunteer Need Post</Link></li>
+                <li><Link to="/manage-posts">Manage My Posts</Link></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <img className="w-8 h-8 rounded-full mr-2" src={logo} alt="Logo" />
+        <h2 className="text-xl font-semibold">
+          Human<span className="text-[#0FA4AF] font-bold">Aid</span>
+        </h2>
       </div>
-      <ul
-        tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><Link>Home</Link></li>
-        <li><Link>All volunteer Need posts</Link></li>
-        <div className="dropdown">
-  <div tabIndex={0} role='button' className="btn">My Profile</div>
-  <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm">
-    <li><Link>Add Volunteer need Post</Link></li>
-    <li><Link>Manage My Posts</Link></li>
-  </ul>
-</div>
-      </ul>
-    </div>
-    <img className='w-8' src={logo} alt="" />
-    <h2 className="text-xl">Human<span className='text-red-700 font-bold'>Aid</span></h2>
-  </div>
-  <div className="navbar-center hidden lg:flex">
-    <ul className="menu menu-horizontal px-1">
-      <li><Link>Home</Link></li>
-      <li><Link>All volunteer Need posts</Link></li>
-      <li className="dropdown">
-    <div tabIndex={0}>My Profile</div>
-    <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm">
-    <li><Link>Add Volunteer need Post</Link></li>
-    <li><Link>Manage My Posts</Link></li>
-    </ul>
-    </li>
-    </ul>
-  </div>
-  <div className="navbar-end gap-2">
-    <label className="toggle text-base-content">
+
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/volunteer-posts">All Volunteer Need Posts</Link></li>
+          <li className="relative profile-dropdown">
+            <div
+              onClick={toggleDropdown}
+              className="flex items-center gap-1 cursor-pointer select-none"
+            >
+              My Profile
+              {isOpen ? <RiArrowDropUpLine size={20} /> : <RiArrowDropDownLine size={20} />}
+            </div>
+            {isOpen && (
+              <ul className="absolute top-full mt-2 left-0 menu bg-base-200 rounded-box z-20 w-52 p-2 shadow-sm">
+                <li><Link to="/add-post">Add Volunteer Need Post</Link></li>
+                <li><Link to="/manage-posts">Manage My Posts</Link></li>
+              </ul>
+            )}
+          </li>
+        </ul>
+      </div>
+
+      <div className="navbar-end gap-2">
+        <label className="toggle text-base-content">
   <input type="checkbox" value="dark" className="theme-controller" />
 
   <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></g></svg>
@@ -49,10 +81,10 @@ const Navbar = () => {
   <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></g></svg>
 
 </label>
-    <a className="btn bg-[#0FA4AF]">Login</a>
-  </div>
-</div>
-    );
+        <Link to="/login" className="btn bg-[#0FA4AF] text-white rounded-3xl">Login</Link>
+      </div>
+    </div>
+  );
 };
 
 export default Navbar;

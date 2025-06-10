@@ -1,5 +1,5 @@
 import React from 'react';
-import footerLogo from "../assets/logo2.jpg"
+import footerLogo from "../assets/logo3.png"
 import { FaFacebook, FaInstagramSquare, FaYoutube } from 'react-icons/fa';
 import { Link } from 'react-router';
 
@@ -7,8 +7,8 @@ const Footer = () => {
     return (
         <footer className="footer sm:footer-horizontal p-10">
   <div className='flex items-center gap-0'>
-    <img className='w-10' src={footerLogo} alt="" />
-    <h1 className="app text-xl">Human<span className='text-red-600 font-bold'>Aid</span></h1>
+    <img className='w-6 rounded-full' src={footerLogo} alt="" />
+    <h1 className="app text-xl">Human<span className='text-[#0FA4AF] font-bold'>Aid</span></h1>
   </div>
   <nav>
     <h6 className="footer-title">LEGAL</h6>
