@@ -1,10 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, use } from 'react';
 import { NavLink } from 'react-router';
 import logo from "../assets/logo3.png";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
+import { AuthContext } from '../contexts/AuthContext/AuthContext';
 
 const Navbar = () => {
+
+  const {user, signOutUser} = use(AuthContext)
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleSignOut = () => {
+    signOutUser()
+    .then(() => {
+      console.log('signout')
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  }
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -115,7 +128,28 @@ const Navbar = () => {
             </g>
           </svg>
         </label>
-        <NavLink to="/login" className="btn bg-[#0FA4AF] text-white rounded-3xl">Login</NavLink>
+
+        {
+          user ? (
+            <div className="flex items-center gap-2 md:gap-3">
+
+              <div className="relative group mr-1">
+                <img
+                  className="w-10 h-10 rounded-full cursor-pointer bg-[#0FA4AF]"
+                  src={user.photoURL || ""}
+                  alt="User"
+                />
+                <span className="absolute top-5 left-1/2 -translate-x-1/2 
+                bg-[#0FA4AF] text-white text-sm rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 z-50 whitespace-nowrap">
+                  {user && user.displayName ? user.displayName : "User"}
+                </span>
+              </div>
+            <button onClick={handleSignOut} className='btn bg-[#0FA4AF] text-white rounded-3xl'>Log Out</button>
+            </div>
+          ) : (
+            <NavLink to="/login" className="btn bg-[#0FA4AF] text-white rounded-3xl">Login</NavLink>
+          )
+        }
       </div>
     </div>
   );

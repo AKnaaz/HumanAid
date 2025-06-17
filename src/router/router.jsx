@@ -7,6 +7,8 @@ import Error from "../pages/Error";
 import AllVolunteerNeedPosts from "../pages/AllVolunteerNeedPosts";
 import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost"         
 import ManageMyPosts from "../pages/ManageMyPosts"
+import Login from "../pages/Login";
+import Register from "../pages/Register"
 
 
 const router = createBrowserRouter([
@@ -30,7 +32,15 @@ const router = createBrowserRouter([
         {
           path: "/manageMyPosts",
           element: <ManageMyPosts></ManageMyPosts>
-        }
+        },
+        {
+          path: "/login",
+          Component: Login
+        },
+        {
+          path: "/register",
+          Component: Register
+        },
     ]
   },
 ]);
