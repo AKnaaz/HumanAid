@@ -24,7 +24,7 @@ const testimonials = [
 
 const VolunteerTestimonials = () => {
   return (
-        <div className='shadow-md'>
+        <div className='my-20'>
             <motion.section
       className="py-10 px-4 text-center"
       initial={{ opacity: 0, y: 50 }}

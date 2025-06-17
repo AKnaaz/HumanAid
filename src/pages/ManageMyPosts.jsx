@@ -3,7 +3,7 @@ import React from 'react';
 const ManageMyPosts = () => {
     return (
         <div>
-            
+            mmp
         </div>
     );
 };

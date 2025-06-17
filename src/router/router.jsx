@@ -4,6 +4,9 @@ import {
 import RootLayout from "../layouts/RootLayout";
 import Home from "../pages/Home/Home";
 import Error from "../pages/Error";
+import AllVolunteerNeedPosts from "../pages/AllVolunteerNeedPosts";
+import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost"         
+import ManageMyPosts from "../pages/ManageMyPosts"
 
 
 const router = createBrowserRouter([
@@ -13,8 +16,20 @@ const router = createBrowserRouter([
     errorElement: <Error></Error>,
     children: [
         {
-            index: true,
-            Component: Home
+          index: true,
+          Component: Home
+        },
+        {
+          path: "/allVolunteerNeedPosts",
+          element: <AllVolunteerNeedPosts></AllVolunteerNeedPosts>
+        },
+        {
+         path: "/addVolunteerNeedPost",
+         element: <AddVolunteerNeedPost></AddVolunteerNeedPost>
+        },
+        {
+          path: "/manageMyPosts",
+          element: <ManageMyPosts></ManageMyPosts>
         }
     ]
   },

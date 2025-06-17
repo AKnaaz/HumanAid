@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 import logo from "../assets/logo3.png";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 
@@ -33,13 +33,13 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
           >
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/volunteer-posts">All Volunteer Need Posts</Link></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/allVolunteerNeedPosts">All Volunteer Need Posts</NavLink></li>
             <li className="dropdown">
               <div tabIndex={0} className="btn btn-sm">My Profile</div>
               <ul tabIndex={0} className="dropdown-content menu bg-base-200 rounded-box z-10 w-52 p-2 shadow-sm">
-                <li><Link to="/add-post">Add Volunteer Need Post</Link></li>
-                <li><Link to="/manage-posts">Manage My Posts</Link></li>
+                <li><NavLink to="/addVolunteerNeedPost">Add Volunteer Need Post</NavLink></li>
+                <li><NavLink to="/manageMyPosts">Manage My Posts</NavLink></li>
               </ul>
             </li>
           </ul>
@@ -51,9 +51,17 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/volunteer-posts">All Volunteer Need Posts</Link></li>
+        <ul className="menu menu-horizontal px-1 flex gap-4 items-center">
+          <li>
+            <NavLink to="/" className={({ isActive }) => isActive ? "text-[#0FA4AF] font-bold" : ""}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/allVolunteerNeedPosts" className={({ isActive }) => isActive ? "text-[#0FA4AF] font-bold" : ""}>
+              All Volunteer Need Posts
+            </NavLink>
+          </li>
           <li className="relative profile-dropdown">
             <div
               onClick={toggleDropdown}
@@ -64,24 +72,50 @@ const Navbar = () => {
             </div>
             {isOpen && (
               <ul className="absolute top-full mt-2 left-0 menu bg-base-200 rounded-box z-20 w-52 p-2 shadow-sm">
-                <li><Link to="/add-post">Add Volunteer Need Post</Link></li>
-                <li><Link to="/manage-posts">Manage My Posts</Link></li>
+                <li>
+                  <NavLink
+                    to="/addVolunteerNeedPost"
+                    className={({ isActive }) => isActive ? "text-[#0FA4AF] font-semibold" : ""}
+                  >
+                    Add Volunteer Need Post
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/manageMyPosts"
+                    className={({ isActive }) => isActive ? "text-[#0FA4AF] font-semibold" : ""}
+                  >
+                    Manage My Posts
+                  </NavLink>
+                </li>
               </ul>
             )}
           </li>
         </ul>
       </div>
-
       <div className="navbar-end gap-2">
         <label className="toggle text-base-content">
-  <input type="checkbox" value="dark" className="theme-controller" />
-
-  <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></g></svg>
-
-  <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></g></svg>
-
-</label>
-        <Link to="/login" className="btn bg-[#0FA4AF] text-white rounded-3xl">Login</Link>
+          <input type="checkbox" value="dark" className="theme-controller" />
+          <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </g>
+          </svg>
+          <svg aria-label="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2" fill="none" stroke="currentColor">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </g>
+          </svg>
+        </label>
+        <NavLink to="/login" className="btn bg-[#0FA4AF] text-white rounded-3xl">Login</NavLink>
       </div>
     </div>
   );
