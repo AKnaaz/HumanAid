@@ -11,6 +11,7 @@ const Login = () => {
     const {signInUser} =use(AuthContext)
     const location = useLocation()
     const navigate = useNavigate()
+    const from = location.state || "/"
     
     const handleLogin = e => {
         e.preventDefault()
@@ -28,7 +29,7 @@ const Login = () => {
                     timer: 2000,
                     showConfirmButton: false
                 });
-                navigate(location.state?.from || "/");
+                navigate(from);
             })
             .catch((error) => {
                 setError(error.message);
@@ -59,7 +60,7 @@ const Login = () => {
                     </form>
 
                     <div className="mt-6 flex justify-center gap-4">
-                        <SocialLogin></SocialLogin>
+                        <SocialLogin from={from}></SocialLogin>
                     </div>
                 </div>
             </div>

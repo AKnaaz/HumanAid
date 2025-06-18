@@ -57,7 +57,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <img className="w-8 h-8 rounded-full mr-2" src={logo} alt="Logo" />
+        <img className="w-8 h-8 rounded-full" src={logo} alt="Logo" />
         <h2 className="text-xl font-semibold">
           Human<span className="text-[#0FA4AF] font-bold">Aid</span>
         </h2>

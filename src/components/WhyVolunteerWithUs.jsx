@@ -20,7 +20,7 @@ const WhyVolunteerWithUs = () => {
                         className="w-[320px] h-[320px] md:w-[500px] md:h-[300px] object-cover rounded-t-[40px] rounded-br-[40px] shadow-2xl"
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.3, duration: 0.5 }}
+                        transition={{ delay: 0.5, duration: 0.8 }}
                     />
                 </div>
                 <p className="text-gray-600 leading-relaxed text-center">

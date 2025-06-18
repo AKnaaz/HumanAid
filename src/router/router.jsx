@@ -9,6 +9,10 @@ import AddVolunteerNeedPost from "../pages/AddVolunteerNeedPost"
 import ManageMyPosts from "../pages/ManageMyPosts"
 import Login from "../pages/Login";
 import Register from "../pages/Register"
+import VolunteerNeedPostsDetails from "../pages/VolunteerNeedPostsDetails";
+import PrivateRoute from "../routes/PrivateRoute";
+import BeAVolunteer from "../pages/BeAVolunteer";
+
 
 
 const router = createBrowserRouter([
@@ -23,11 +27,14 @@ const router = createBrowserRouter([
         },
         {
           path: "/allVolunteerNeedPosts",
+          loader: () => fetch("http://localhost:3000/vols"),
           element: <AllVolunteerNeedPosts></AllVolunteerNeedPosts>
         },
         {
          path: "/addVolunteerNeedPost",
-         element: <AddVolunteerNeedPost></AddVolunteerNeedPost>
+         element: <PrivateRoute>
+          <AddVolunteerNeedPost></AddVolunteerNeedPost>
+         </PrivateRoute>
         },
         {
           path: "/manageMyPosts",
@@ -41,6 +48,19 @@ const router = createBrowserRouter([
           path: "/register",
           Component: Register
         },
+        {
+          path: "/vols/:id",
+          loader: ({ params }) => fetch(`http://localhost:3000/vols/${params.id}`),
+          element: <PrivateRoute>
+            <VolunteerNeedPostsDetails></VolunteerNeedPostsDetails>
+            </PrivateRoute>
+        },
+        {
+          path: "/beAVols/:id",
+          element: <PrivateRoute>
+              <BeAVolunteer></BeAVolunteer>
+            </PrivateRoute>    
+        }
     ]
   },
 ]);

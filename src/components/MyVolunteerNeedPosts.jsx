@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import VolunteerNeedCard from './VolunteerNeedCard';
+import { FaLongArrowAltRight } from 'react-icons/fa';
+import { Link } from 'react-router';
 
 const MyVolunteerNeedPosts = () => {
 
@@ -18,6 +20,12 @@ const MyVolunteerNeedPosts = () => {
             <VolunteerNeedCard key={vol._id} vol={vol}></VolunteerNeedCard>
         ))}
       </div>
+        <div className='text-end py-8'>
+          <Link to="/allVolunteerNeedPosts">
+            <button className='btn bg-[#0FA4AF] text-white hover:bg-[#0c8c95] transition-colors rounded-3xl'>See All <FaLongArrowAltRight /></button>
+          </Link>
+        </div>
+      
         </div>
     );
 };
