@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import { GrUpdate } from 'react-icons/gr';
 import { RiDeleteBinLine } from 'react-icons/ri';
+import Swal from 'sweetalert2';
 
 const MyVolunteerNeedPost = () => {
   const { user } = useAuth();
@@ -12,6 +13,37 @@ const MyVolunteerNeedPost = () => {
       .then(res => res.json())
       .then(data => setMyPosts(data));
   }, [user?.email]);
+
+  const handleDelete = (_id) => {
+    console.log(_id)
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0FA4AF",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+        if(result.isConfirmed) {
+            fetch(`http://localhost:3000/myVols/${_id}`, {
+                method: "DELETE"
+            })
+            .then(res => res.json())
+            .then(data => {
+                if(data.deletedCount) {
+                    Swal.fire({
+                     title: "Deleted!",
+                     text: "Your post has been cancelled.",
+                     icon: "success"
+                    });
+                    const remainingPost = myPosts.filter(post => post._id !== _id);
+                    setMyPosts(remainingPost);
+                }
+            })
+        }
+    })
+  }
 
   return (
     <div className="p-4 md:p-10">
@@ -38,7 +70,7 @@ const MyVolunteerNeedPost = () => {
                   <td>{post.deadline}</td>
                   <td className="flex flex-wrap gap-2">
                     <button className="btn btn-sm bg-[#0FA4AF] text-white"><GrUpdate /></button>
-                    <button className="btn btn-sm bg-[#0FA4AF] text-white"><RiDeleteBinLine /></button>
+                    <button onClick={() => handleDelete(post._id)} className="btn btn-sm bg-[#0FA4AF] text-white"><RiDeleteBinLine /></button>
                   </td>
                 </tr>
               ))}
