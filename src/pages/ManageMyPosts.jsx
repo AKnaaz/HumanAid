@@ -4,7 +4,7 @@ import MyVolunteerRequestPosts from '../components/MyVolunteerRequestPosts';
 
 const ManageMyPosts = () => {
     return (
-        <div>
+        <div className='space-y-10'>
             <MyVolunteerNeedPost></MyVolunteerNeedPost>
             <MyVolunteerRequestPosts></MyVolunteerRequestPosts>
         </div>

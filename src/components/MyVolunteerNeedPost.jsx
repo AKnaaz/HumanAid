@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../hooks/useAuth';
-import { GrUpdate } from 'react-icons/gr';
+import useAuth from '../hooks/useAuth'
 import { RiDeleteBinLine } from 'react-icons/ri';
 import Swal from 'sweetalert2';
+import { MdModeEdit } from 'react-icons/md';
+import { Link } from 'react-router';
 
 const MyVolunteerNeedPost = () => {
   const { user } = useAuth();
@@ -69,7 +70,9 @@ const MyVolunteerNeedPost = () => {
                   <td>{post.title}</td>
                   <td>{post.deadline}</td>
                   <td className="flex flex-wrap gap-2">
-                    <button className="btn btn-sm bg-[#0FA4AF] text-white"><GrUpdate /></button>
+                    <Link to={`/update/${post._id}`}>
+                    <button className="btn btn-sm bg-[#0FA4AF] text-white"><MdModeEdit /></button>
+                    </Link>
                     <button onClick={() => handleDelete(post._id)} className="btn btn-sm bg-[#0FA4AF] text-white"><RiDeleteBinLine /></button>
                   </td>
                 </tr>

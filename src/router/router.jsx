@@ -12,6 +12,7 @@ import Register from "../pages/Register"
 import VolunteerNeedPostsDetails from "../pages/VolunteerNeedPostsDetails";
 import PrivateRoute from "../routes/PrivateRoute";
 import BeAVolunteer from "../pages/BeAVolunteer";
+import Update from "../pages/Update";
 
 
 
@@ -62,6 +63,13 @@ const router = createBrowserRouter([
           element: <PrivateRoute>
               <BeAVolunteer></BeAVolunteer>
             </PrivateRoute>    
+        },
+        {
+          path: "/update/:id",
+          loader: ({params}) => fetch(`http://localhost:3000/vols/${params.id}`),
+          element: <PrivateRoute>
+            <Update></Update>
+          </PrivateRoute>
         }
     ]
   },
