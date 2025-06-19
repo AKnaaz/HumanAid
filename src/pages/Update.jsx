@@ -5,6 +5,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 const Update = () => {
+ 
   const { id } = useParams();
   const { user } = useAuth();
 
@@ -22,6 +23,14 @@ const Update = () => {
       });
   }, [id]);
 
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const updatedPost = Object.fromEntries(formData.entries())
+    console.log(updatedPost)
+  }
+
   if (!postData) return <div className="text-center mt-10"><span className="loading loading-ring loading-xl"></span></div>;
 
   return (
@@ -29,7 +38,7 @@ const Update = () => {
     style={{ backgroundImage: `url('https://i.postimg.cc/FRf69y59/up.jpg')` }}
     >
       <h2 className="text-3xl font-bold text-center mb-6">Update Volunteer Need Post</h2>
-      <form className="space-y-4">
+      <form onSubmit={handleUpdate} className="space-y-4">
 
         <input
           name="thumbnail"
@@ -60,11 +69,11 @@ const Update = () => {
           defaultValue={postData.category}
           className="select select-bordered w-full bg-transparent text-white placeholder-white"
         >
-          <option value="">Select Category</option>
-          <option value="healthcare">Healthcare</option>
-          <option value="education">Education</option>
-          <option value="social service">Social Service</option>
-          <option value="animal welfare">Animal Welfare</option>
+          <option className='text-black' value="">Select Category</option>
+          <option className='text-black' value="healthcare">Healthcare</option>
+          <option className='text-black' value="education">Education</option>
+          <option className='text-black' value="social service">Social Service</option>
+          <option className='text-black' value="animal welfare">Animal Welfare</option>
         </select>
 
         <input
