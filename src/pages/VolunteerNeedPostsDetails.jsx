@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router';
-import BeAVolunteer from './BeAVolunteer';
 
 const VolunteerNeedPostsDetails = () => {
   const vols = useLoaderData();
@@ -9,7 +8,7 @@ const VolunteerNeedPostsDetails = () => {
     return <div className="text-center mt-20 text-red-500">No data found.</div>;
   }
 
-  const {_id, thumbnail, title, category, deadline, description, location, volunteers_needed } = vols;
+  const { _id, thumbnail, title, category, deadline, description, location, volunteers_needed } = vols;
 
   return (
     <div className='p-10 md:p-20'>
@@ -23,11 +22,22 @@ const VolunteerNeedPostsDetails = () => {
         <p><strong>Volunteers Needed:</strong> {volunteers_needed}</p>
         <p><strong>Deadline:</strong> {deadline}</p>
       </div>
-      <div className='text-center my-5'>
-       <Link to={`/beAVols/${_id}`}>
-          <button className='btn bg-[#0FA4AF] text-white'>Be a Volunteer</button>
-        </Link>
 
+      <div className='text-center my-5'>
+        {
+          volunteers_needed > 0 ? (
+            <Link to={`/beAVols/${_id}`}>
+              <button className='btn bg-[#0FA4AF] text-white'>Be a Volunteer</button>
+            </Link>
+          ) : (
+            <>
+              <button className='btn bg-gray-400 text-white cursor-not-allowed' disabled>
+                No Volunteers Needed
+              </button>
+              <p className="text-red-500 font-medium mt-2">All volunteer slots are already filled.</p>
+            </>
+          )
+        }
       </div>
     </div>
   );

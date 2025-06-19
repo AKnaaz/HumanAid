@@ -19,6 +19,21 @@ const BeAVolunteer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // ✅ Check if user already requested for this post
+    const checkRes = await fetch(`http://localhost:3000/hasRequested?email=${user.email}&postId=${postData._id}`);
+    const checkData = await checkRes.json();
+
+    if (checkData.hasRequested) {
+      Swal.fire({
+        icon: 'info',
+        title: 'Already Requested',
+        text: 'You have already requested to be a volunteer for this post.',
+        confirmButtonColor: '#0FA4AF'
+      });
+      return;
+    }
+
+    // ✅ If not already requested, proceed to submit
     const requestInfo = {
       ...postData,
       postId: postData._id.toString(),
@@ -37,20 +52,21 @@ const BeAVolunteer = () => {
     const result = await res.json();
 
     if (result.insertedId) {
-  Swal.fire({
-    title: 'Success!',
-    text: 'Request submitted successfully!',
-    icon: 'success',
-    confirmButtonColor: '#0FA4AF',
-    confirmButtonText: 'OK'
-  });
-}
-
+      Swal.fire({
+        title: 'Success!',
+        text: 'Request submitted successfully!',
+        icon: 'success',
+        confirmButtonColor: '#0FA4AF',
+        confirmButtonText: 'OK'
+      });
+    }
   };
 
-  if (!postData) return <div className="text-center mt-10">
-    <span className="loading loading-ring loading-xl"></span>
-    </div>;
+  if (!postData) return (
+    <div className="text-center mt-10">
+      <span className="loading loading-ring loading-xl"></span>
+    </div>
+  );
 
   return (
     <div className="max-w-3xl mx-auto p-6 mt-10 shadow-lg rounded-lg">

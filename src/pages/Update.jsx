@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import Swal from 'sweetalert2';
 
 const Update = () => {
  
@@ -29,6 +30,26 @@ const Update = () => {
     const formData = new FormData(form);
     const updatedPost = Object.fromEntries(formData.entries())
     console.log(updatedPost)
+
+    fetch(`http://localhost:3000/vols/${id}`, {
+        method: "PUT",
+        headers: {
+            "content-type": "application/json"
+        },
+        body: JSON.stringify(updatedPost)
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.modifiedCount){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Your post updated successfully",
+                showConfirmButton: false,
+                timer: 1500
+             });
+        }
+    })
   }
 
   if (!postData) return <div className="text-center mt-10"><span className="loading loading-ring loading-xl"></span></div>;
