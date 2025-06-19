@@ -20,36 +20,39 @@ const MyVolunteerRequestPosts = () => {
     }
   }, [user?.email]);
 
-  const handleCancel = (id) => {
+  const handleCancel = (_id) => {
+    console.log(_id)
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You want to cancel this volunteer request.",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#0FA4AF',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, cancel it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        fetch(`http://localhost:3000/myVolunteerRequests/${id}`, {
-          method: 'DELETE'
-        })
-          .then(res => res.json())
-          .then(data => {   
-            if (data.success && data.deletedCount > 0) {
-                Swal.fire('Cancelled!', 'Your request has been cancelled.', 'success');
-                setRequests(prev => prev.filter(req => req._id.toString() !== id.toString()));
-            }
-            else {
-              Swal.fire('Error', 'Could not cancel the request.', 'error');
-            }
-          })
-          .catch(() => {
-            Swal.fire('Error', 'Server error occurred.', 'error');
-          });
-      }
-    });
-  };
+  title: "Are you sure?",
+  text: "You won't be able to revert this!",
+  icon: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#3085d6",
+  cancelButtonColor: "#d33",
+  confirmButtonText: "Yes, delete it!"
+}).then((result) => {
+  if (result.isConfirmed) {
+    
+    fetch(`http://localhost:3000/myVolunteerRequests/${_id}`, {
+        method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.deletedCount) {
+            Swal.fire({
+            title: "Deleted!",
+            text: "Your request has been cancelled.",
+            icon: "success"
+        });
+
+        const remainingVols = requests.filter(req => req._id !== _id);
+        setRequests(remainingVols);
+        }
+    })
+    
+  }
+});
+  }
 
   return (
     <div className="p-4 md:p-10">
