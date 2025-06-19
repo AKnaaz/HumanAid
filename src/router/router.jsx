@@ -38,7 +38,9 @@ const router = createBrowserRouter([
         },
         {
           path: "/manageMyPosts",
-          element: <ManageMyPosts></ManageMyPosts>
+          element: <PrivateRoute>
+            <ManageMyPosts></ManageMyPosts>
+          </PrivateRoute>
         },
         {
           path: "/login",

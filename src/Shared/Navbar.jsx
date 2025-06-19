@@ -133,9 +133,9 @@ const Navbar = () => {
           user ? (
             <div className="flex items-center gap-2 md:gap-3">
 
-              <div className="relative group mr-1">
+              <div className="relative group md:mr-1">
                 <img
-                  className="w-10 h-10 rounded-full cursor-pointer bg-[#0FA4AF]"
+                  className="w-5 h-5 md:w-10 md:h-10 rounded-full cursor-pointer bg-[#0FA4AF]"
                   src={user.photoURL || ""}
                   alt="User"
                 />

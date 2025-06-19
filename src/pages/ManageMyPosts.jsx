@@ -1,9 +1,12 @@
 import React from 'react';
+import MyVolunteerNeedPost from '../components/MyVolunteerNeedPost';
+import MyVolunteerRequestPosts from '../components/MyVolunteerRequestPosts';
 
 const ManageMyPosts = () => {
     return (
         <div>
-            mmp
+            <MyVolunteerNeedPost></MyVolunteerNeedPost>
+            <MyVolunteerRequestPosts></MyVolunteerRequestPosts>
         </div>
     );
 };
