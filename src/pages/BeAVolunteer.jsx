@@ -19,7 +19,6 @@ const BeAVolunteer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // ✅ Check if user already requested for this post
     const checkRes = await fetch(`http://localhost:3000/hasRequested?email=${user.email}&postId=${postData._id}`);
     const checkData = await checkRes.json();
 
@@ -33,7 +32,6 @@ const BeAVolunteer = () => {
       return;
     }
 
-    // ✅ If not already requested, proceed to submit
     const requestInfo = {
       ...postData,
       postId: postData._id.toString(),
