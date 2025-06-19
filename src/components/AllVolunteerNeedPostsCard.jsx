@@ -6,7 +6,7 @@ const AllVolunteerNeedPostsCard = ({vol}) => {
 
     const {_id, thumbnail, title, category, deadline} = vol;
     return (
-         <motion.div
+          <motion.div
               className="card w-full shadow-lg"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
