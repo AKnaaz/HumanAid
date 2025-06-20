@@ -3,6 +3,7 @@ import regImg from "../assets/register.jpg"
 import { use } from 'react';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Register = ({from}) => {
 
@@ -75,6 +76,9 @@ const Register = ({from}) => {
         }
     return (
         <div className="min-h-screen flex flex-col md:flex-row">
+            <Helmet>
+                <title>My Eleventh Assignment | Register</title>
+            </Helmet>
             <div className="md:w-1/2 w-full flex flex-col justify-center items-center px-10 py-20">
                 <div className="w-full max-w-sm">
                     <h2 className="text-3xl font-semibold mb-6">Create an account</h2>

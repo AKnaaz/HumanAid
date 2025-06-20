@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import backgroundImg from "../assets/error4.jpg";
+import { Helmet } from 'react-helmet';
 
 const Error = () => {
   return (
@@ -8,6 +9,9 @@ const Error = () => {
       className="pt-20 min-h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center px-4"
       style={{ backgroundImage: `url(${backgroundImg})` }}
     >
+      <Helmet>
+        <title>My Eleventh Assignment | Error</title>
+      </Helmet>
       <div className="card w-full max-w-md mx-auto rounded-lg">
         <div className="card-body items-center text-center p-6 md:p-10">
           <h2 className="card-title text-2xl md:text-4xl font-bold mb-4">404 - Page Not Found</h2>

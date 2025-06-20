@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import useAuth from '../hooks/useAuth';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const BeAVolunteer = () => {
   const { id } = useParams();
@@ -68,6 +69,9 @@ const BeAVolunteer = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 mt-10 shadow-lg rounded-lg">
+      <Helmet>
+        <title>My Eleventh Assignment | Be A Volunteer</title>
+      </Helmet>
       <h2 className="text-2xl font-bold text-center text-[#0FA4AF] mb-6">Be a Volunteer</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
 

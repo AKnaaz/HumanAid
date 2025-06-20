@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import SocialLogin from '../Shared/SocialLogin';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Login = () => {
 
@@ -44,6 +45,9 @@ const Login = () => {
     }
     return (
         <div className="min-h-screen flex flex-col md:flex-row my-8">
+            <Helmet>
+                <title>My Eleventh Assignment | Login</title>
+            </Helmet>
             <div className="md:w-1/2 w-full flex flex-col justify-center  items-center px-10 py-20 rounded-tl-3xl rounded-bl-3xl">
                 <div className="w-full max-w-sm shadow-2xl rounded-3xl p-3">
                     <h2 className="text-3xl font-semibold mb-6">Login Now!</h2>

@@ -1,23 +1,34 @@
-import React, { useState, useEffect, use } from 'react';
-import { NavLink } from 'react-router';
+import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router'; 
 import logo from "../assets/logo3.png";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from 'react-icons/ri';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
+import { Helmet } from 'react-helmet';
+import { FaBars } from 'react-icons/fa';
 
 const Navbar = () => {
-
-  const {user, signOutUser} = use(AuthContext)
+  const { user, signOutUser } = React.useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [viewMode, setViewMode] = useState(() => {
+    return localStorage.getItem("volViewMode") || "card";
+  });
+
+  const handleToggleView = () => {
+    const newView = viewMode === "card" ? "table" : "card";
+    setViewMode(newView);
+    localStorage.setItem("volViewMode", newView);
+    window.dispatchEvent(new Event("volViewModeChange")); 
+  };
 
   const handleSignOut = () => {
     signOutUser()
-    .then(() => {
-      console.log('signout')
-    })
-    .catch(error => {
-      console.log(error)
-    })
-  }
+      .then(() => {
+        console.log('signout');
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -44,7 +55,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 shadow"
           >
             <li><NavLink to="/">Home</NavLink></li>
             <li><NavLink to="/allVolunteerNeedPosts">All Volunteer Need Posts</NavLink></li>
@@ -80,6 +91,9 @@ const Navbar = () => {
               onClick={toggleDropdown}
               className="flex items-center gap-1 cursor-pointer select-none"
             >
+              <Helmet>
+                <title>My Eleventh Assignment | My Profile</title>
+              </Helmet>
               My Profile
               {isOpen ? <RiArrowDropUpLine size={20} /> : <RiArrowDropDownLine size={20} />}
             </div>
@@ -106,7 +120,13 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+
       <div className="navbar-end gap-2">
+
+        <button onClick={handleToggleView} className="btn btn-ghost">
+          <FaBars />
+        </button>
+
         <label className="toggle text-base-content">
           <input type="checkbox" value="dark" className="theme-controller" />
           <svg aria-label="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -132,7 +152,6 @@ const Navbar = () => {
         {
           user ? (
             <div className="flex items-center gap-2 md:gap-3">
-
               <div className="relative group md:mr-1">
                 <img
                   className="w-5 h-5 md:w-10 md:h-10 rounded-full cursor-pointer bg-[#0FA4AF]"
@@ -140,11 +159,11 @@ const Navbar = () => {
                   alt="User"
                 />
                 <span className="absolute top-5 left-1/2 -translate-x-1/2 
-                bg-[#0FA4AF] text-white text-sm rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 z-50 whitespace-nowrap">
+                  bg-[#0FA4AF] text-white text-sm rounded-md px-2 py-1 opacity-0 group-hover:opacity-100 transition-all duration-200 z-50 whitespace-nowrap">
                   {user && user.displayName ? user.displayName : "User"}
                 </span>
               </div>
-            <button onClick={handleSignOut} className='btn bg-[#0FA4AF] text-white rounded-3xl'>Log Out</button>
+              <button onClick={handleSignOut} className='btn bg-[#0FA4AF] text-white rounded-3xl'>Log Out</button>
             </div>
           ) : (
             <NavLink to="/login" className="btn bg-[#0FA4AF] text-white rounded-3xl">Login</NavLink>

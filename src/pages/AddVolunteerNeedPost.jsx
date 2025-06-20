@@ -3,6 +3,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const AddVolunteerNeedPost = () => {
   const { user } = use(AuthContext);
@@ -45,6 +46,9 @@ const AddVolunteerNeedPost = () => {
 
   return (
     <div className="max-w-3xl mx-auto p-6 mt-10 shadow-lg rounded-lg">
+      <Helmet>
+         <title>My Eleventh Assignment | Add Volunteer Need Post</title> 
+      </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-center">Add Volunteer Need Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
 

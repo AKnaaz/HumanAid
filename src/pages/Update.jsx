@@ -58,6 +58,9 @@ const Update = () => {
     <div className="max-w-3xl mx-auto p-6 mt-10 shadow-lg rounded-lg bg-cover bg-center"
     style={{ backgroundImage: `url('https://i.postimg.cc/FRf69y59/up.jpg')` }}
     >
+      <Helmet>
+        <title>My Eleventh Assignment | Update</title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center mb-6">Update Volunteer Need Post</h2>
       <form onSubmit={handleUpdate} className="space-y-4">
 

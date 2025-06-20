@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useLoaderData } from 'react-router';
 
 const VolunteerNeedPostsDetails = () => {
@@ -12,6 +13,9 @@ const VolunteerNeedPostsDetails = () => {
 
   return (
     <div className='p-10 md:p-20'>
+      <Helmet>
+        <title>My Eleventh Assignment | Volunteer Task Details</title>
+      </Helmet>
       <h1 className='text-center text-3xl font-bold mb-5'>Volunteer Task Details</h1>
       <div className="p-6 max-w-md mx-auto rounded-xl shadow-lg space-y-4">
         <img src={thumbnail} alt={title} className="rounded-md w-full object-cover" />
