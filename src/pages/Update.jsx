@@ -4,6 +4,7 @@ import useAuth from '../hooks/useAuth';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
+import { Helmet } from 'react-helmet';
 
 const Update = () => {
  
