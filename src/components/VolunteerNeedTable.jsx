@@ -37,7 +37,7 @@ const VolunteerNeedTable = ({ volunteerPosts }) => {
                 <td className="p-2 md:p-3">
                   <Link to={`/vols/${vol._id}`}>
                     <button className="btn btn-xs sm:btn-sm md:btn-md bg-[#0FA4AF] text-white">
-                      View
+                      View Details
                     </button>
                   </Link>
                 </td>

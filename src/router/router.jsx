@@ -15,7 +15,6 @@ import BeAVolunteer from "../pages/BeAVolunteer";
 import Update from "../pages/Update";
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -53,10 +52,10 @@ const router = createBrowserRouter([
         },
         {
           path: "/vols/:id",
-          loader: ({ params }) => fetch(`http://localhost:3000/vols/${params.id}`),
+          loader: ({params}) => fetch(`http://localhost:3000/vols/${params.id}`),
           element: <PrivateRoute>
             <VolunteerNeedPostsDetails></VolunteerNeedPostsDetails>
-            </PrivateRoute>
+          </PrivateRoute>
         },
         {
           path: "/beAVols/:id",

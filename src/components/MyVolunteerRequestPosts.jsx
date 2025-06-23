@@ -8,7 +8,11 @@ const MyVolunteerRequestPosts = () => {
   const [requests, setRequests] = useState([]);
 
   const fetchRequests = () => {
-    fetch(`http://localhost:3000/myVolunteerRequests?email=${user.email}`)
+    if (!user) return;
+
+    fetch(`http://localhost:3000/myVolunteerRequests?email=${user.email}`, {
+      credentials: 'include'
+    })
       .then(res => res.json())
       .then(data => setRequests(data.data || []))
       .catch(err => console.error("Fetch Error:", err));
@@ -21,38 +25,40 @@ const MyVolunteerRequestPosts = () => {
   }, [user?.email]);
 
   const handleCancel = (_id) => {
-    console.log(_id)
     Swal.fire({
-  title: "Are you sure?",
-  text: "You won't be able to revert this!",
-  icon: "warning",
-  showCancelButton: true,
-  confirmButtonColor: "#0FA4AF",
-  cancelButtonColor: "#d33",
-  confirmButtonText: "Yes, delete it!"
-}).then((result) => {
-  if (result.isConfirmed) {
-    
-    fetch(`http://localhost:3000/myVolunteerRequests/${_id}`, {
-        method: 'DELETE'
-    })
-    .then(res => res.json())
-    .then(data => {
-        if(data.deletedCount) {
-            Swal.fire({
-            title: "Deleted!",
-            text: "Your request has been cancelled.",
-            icon: "success"
-        });
-
-        const remainingVols = requests.filter(req => req._id !== _id);
-        setRequests(remainingVols);
-        }
-    })
-    
-  }
-});
-  }
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#0FA4AF",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/myVolunteerRequests/${_id}`, {
+          method: 'DELETE'
+        })
+          .then(res => {
+            if (!res.ok) throw new Error(`Error: ${res.status}`);
+            return res.json();
+          })
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your request has been cancelled.",
+                icon: "success"
+              });
+              setRequests(requests.filter(req => req._id !== _id));
+            }
+          })
+          .catch(err => {
+            console.error('Delete Error:', err);
+            Swal.fire('Error', 'Failed to cancel the request.', 'error');
+          });
+      }
+    });
+  };
 
   return (
     <div className="p-4 md:p-10">

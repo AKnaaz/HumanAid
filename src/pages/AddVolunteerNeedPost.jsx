@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import React, { useState, use } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { AuthContext } from '../contexts/AuthContext/AuthContext';
@@ -28,9 +28,16 @@ const AddVolunteerNeedPost = () => {
     try {
       const res = await fetch('http://localhost:3000/addVols', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'content-type': 'application/json'
+        },
+        credentials: 'include',
         body: JSON.stringify(post)
       });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
 
       const data = await res.json();
       if (data.insertedId) {
@@ -47,17 +54,13 @@ const AddVolunteerNeedPost = () => {
   return (
     <div className="max-w-3xl mx-auto p-6 mt-10 shadow-lg rounded-lg">
       <Helmet>
-         <title>My Eleventh Assignment | Add Volunteer Need Post</title> 
+        <title>Add Volunteer Need Post</title>
       </Helmet>
       <h2 className="text-3xl font-bold mb-6 text-center">Add Volunteer Need Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-
         <input name="thumbnail" type="url" required placeholder="Thumbnail URL" className="input input-bordered w-full" />
-
         <input name="title" type="text" required placeholder="Post Title" className="input input-bordered w-full" />
-
         <textarea name="description" required placeholder="Description" className="textarea textarea-bordered w-full" rows={4} />
-
         <select name="category" className="select select-bordered w-full" required>
           <option value="">Select Category</option>
           <option value="healthcare">Healthcare</option>
@@ -65,12 +68,9 @@ const AddVolunteerNeedPost = () => {
           <option value="social service">Social Service</option>
           <option value="animal welfare">Animal Welfare</option>
         </select>
-
         <input name="location" type="text" required placeholder="Location" className="input input-bordered w-full" />
-
         <input name="volunteers_needed" type="number" min="1" required placeholder="No. of Volunteers Needed" className="input input-bordered w-full" />
 
-        
         <div className="space-y-4">
           <label className="block font-semibold">Deadline</label>
           <DatePicker

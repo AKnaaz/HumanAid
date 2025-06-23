@@ -7,7 +7,6 @@ import Swal from 'sweetalert2';
 import { Helmet } from 'react-helmet';
 
 const Update = () => {
- 
   const { id } = useParams();
   const { user } = useAuth();
 
@@ -15,49 +14,73 @@ const Update = () => {
   const [deadline, setDeadline] = useState(new Date());
 
   useEffect(() => {
-    fetch(`http://localhost:3000/vols/${id}`)
-      .then(res => res.json())
+    fetch(`http://localhost:3000/vols/${id}`, {
+      credentials: 'include'
+    })
+      .then(res => {
+        if (res.status === 401 || res.status === 403) {
+          Swal.fire('Unauthorized', 'Please login to access this data.', 'error');
+          throw new Error('Unauthorized');
+        }
+        return res.json();
+      })
       .then(data => {
         setPostData(data);
         if (data.deadline) {
           setDeadline(new Date(data.deadline));
         }
-      });
+      })
+      .catch(err => console.error(err));
   }, [id]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
+
     const form = e.target;
     const formData = new FormData(form);
-    const updatedPost = Object.fromEntries(formData.entries())
-    console.log(updatedPost)
+    const updatedPost = Object.fromEntries(formData.entries());
+
+    updatedPost.deadline = deadline.toISOString().split('T')[0];
 
     fetch(`http://localhost:3000/vols/${id}`, {
-        method: "PUT",
-        headers: {
-            "content-type": "application/json"
-        },
-        body: JSON.stringify(updatedPost)
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedPost)
     })
-    .then(res => res.json())
-    .then(data => {
-        if(data.modifiedCount){
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Your post updated successfully",
-                showConfirmButton: false,
-                timer: 1500
-             });
+      .then(res => res.json())
+      .then(data => {
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your post updated successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+        } else {
+          Swal.fire({
+            icon: "info",
+            title: "No changes detected or update failed",
+          });
         }
-    })
-  }
+      })
+      .catch(err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Update Failed',
+          text: 'Something went wrong. Please try again.',
+        });
+        console.error(err);
+      });
+  };
 
   if (!postData) return <div className="text-center mt-10"><span className="loading loading-ring loading-xl"></span></div>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 mt-10 shadow-lg rounded-lg bg-cover bg-center"
-    style={{ backgroundImage: `url('https://i.postimg.cc/FRf69y59/up.jpg')` }}
+      style={{ backgroundImage: `url('https://i.postimg.cc/FRf69y59/up.jpg')` }}
     >
       <Helmet>
         <title>My Eleventh Assignment | Update</title>

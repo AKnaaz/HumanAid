@@ -17,7 +17,9 @@ const AllVolunteerNeedPosts = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/vols');
+      const res = await fetch('http://localhost:3000/vols', {
+        credentials: 'include'
+      });
       const data = await res.json();
       setVols(data);
     } catch (err) {

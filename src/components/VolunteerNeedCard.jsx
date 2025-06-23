@@ -3,10 +3,10 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 
 const VolunteerNeedCard = ({ vol }) => {
-  const {_id, thumbnail, title, category, deadline } = vol;
+  const { _id, thumbnail, title, category, deadline } = vol;
 
   return (
-      <motion.div
+    <motion.div
       className="card w-full shadow-lg"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -30,13 +30,12 @@ const VolunteerNeedCard = ({ vol }) => {
           <span className="font-bold">Deadline:</span> {deadline}
         </p>
         <div className="card-actions">
-        <Link to={`/vols/${_id}`}>
+          <Link to={`/vlos/${_id}`}>
             <button className="btn bg-[#0FA4AF] text-white">View Details</button>
           </Link>
         </div>
       </div>
     </motion.div>
-    
   );
 };
 

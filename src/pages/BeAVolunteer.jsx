@@ -5,75 +5,84 @@ import { Helmet } from 'react-helmet';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-
 const BeAVolunteer = () => {
   const { id: postId } = useParams();
-  const { user } = useAuth();
+  const { user } = useAuth();  
 
   const [postData, setPostData] = useState(null);
   const [suggestion, setSuggestion] = useState('');
 
   useEffect(() => {
-    fetch(`http://localhost:3000/vols/${postId}`)
-      .then((res) => res.json())
-      .then((data) => setPostData(data));
-  }, [postId]);
+    if (!user) return;
+
+    fetch(`http://localhost:3000/vols/${postId}`, {
+      credentials: 'include'
+    })
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) {
+          Swal.fire('Unauthorized', 'Please login to access this data.', 'error');
+          throw new Error('Unauthorized');
+        }
+        return res.json();
+      })
+      .then((data) => setPostData(data))
+      .catch(err => console.error(err));
+  }, [postId, user]);
 
   const handleRequest = async (e) => {
     e.preventDefault();
 
-     const checkRes = await
-      fetch(`http://localhost:3000/hasRequested?email=${user.email}&postId=${postData._id}`);
-    const checkData = await checkRes.json();
-
-    if (checkData.hasRequested) {
-      Swal.fire({
-        icon: 'info',
-        title: 'Already Requested',
-        text: 'You have already requested to be a volunteer for this post.',
-        confirmButtonColor: '#0FA4AF'
-      });
-      return;
-    }
-
     if (!postData) return;
 
-    const { _id, ...cleanPostData } = postData;
+    try {
+      const checkRes = await fetch(`http://localhost:3000/hasRequested?email=${user.email}&postId=${postData._id}`);
+      const checkData = await checkRes.json();
 
-    const requestInfo = {
-      ...cleanPostData,
-      postId,
-      volunteer_name: user?.displayName,
-      volunteer_email: user?.email,
-      suggestion,
-      status: 'requested',
-    };
+      if (checkData.hasRequested) {
+        Swal.fire({
+          icon: 'info',
+          title: 'Already Requested',
+          text: 'You have already requested to be a volunteer for this post.',
+          confirmButtonColor: '#0FA4AF'
+        });
+        return;
+      }
 
-    axios
-      .post('http://localhost:3000/volunteerRequests', requestInfo)
-      .then((res) => {
-        if (res.data?.success) {
-          Swal.fire({
-            icon: 'success',
-            title: 'Request Sent!',
-            text: 'Your volunteer request has been submitted successfully.',
-            confirmButtonColor: '#0FA4AF'
-          });
-        } else {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Something went wrong. Please try again!',
-          });
-        }
-        })
-      .catch((error) => {
+      const { _id, ...cleanPostData } = postData;
+
+      const requestInfo = {
+        ...cleanPostData,
+        postId,
+        volunteer_name: user?.displayName,
+        volunteer_email: user?.email,
+        suggestion,
+        status: 'requested',
+      };
+
+      const res = await axios.post('http://localhost:3000/volunteerRequests', requestInfo);
+
+      if (res.data?.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Request Sent!',
+          text: 'Your volunteer request has been submitted successfully.',
+          confirmButtonColor: '#0FA4AF'
+        });
+      } else {
         Swal.fire({
           icon: 'error',
-          title: 'Submission Failed',
-          text: 'Failed to submit request. Please try again later.',
+          title: 'Oops...',
+          text: 'Something went wrong. Please try again!',
         });
+      }
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Submission Failed',
+        text: 'Failed to submit request. Please try again later.',
       });
+    }
   };
 
   if (!postData) return <div>Loading...</div>;

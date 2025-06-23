@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import useAuth from '../hooks/useAuth'
+import useAuth from '../hooks/useAuth';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import Swal from 'sweetalert2';
 import { MdModeEdit } from 'react-icons/md';
@@ -7,20 +7,26 @@ import { Link } from 'react-router';
 import { Helmet } from 'react-helmet';
 
 const MyVolunteerNeedPost = () => {
-  <Helmet>
-    <title>My Eleventh Assignment | Add Volunteer Need Post</title> 
-  </Helmet>
   const { user } = useAuth();
   const [myPosts, setMyPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/myVols?email=${user?.email}`)
-      .then(res => res.json())
-      .then(data => setMyPosts(data));
+    if (!user?.email) return;
+
+    fetch(`http://localhost:3000/myVols?email=${user.email}`, {
+      credentials: 'include'
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => setMyPosts(data))
+      .catch(err => console.error('Fetch error:', err));
   }, [user?.email]);
 
   const handleDelete = (_id) => {
-    console.log(_id)
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -30,28 +36,40 @@ const MyVolunteerNeedPost = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
-        if(result.isConfirmed) {
-            fetch(`http://localhost:3000/myVols/${_id}`, {
-                method: "DELETE"
-            })
-            .then(res => res.json())
-            .then(data => {
-                if(data.deletedCount) {
-                    Swal.fire({
-                     title: "Deleted!",
-                     text: "Your post has been cancelled.",
-                     icon: "success"
-                    });
-                    const remainingPost = myPosts.filter(post => post._id !== _id);
-                    setMyPosts(remainingPost);
-                }
-            })
-        }
-    })
-  }
+      if (result.isConfirmed) {
+        fetch(`http://localhost:3000/myVols/${_id}`, {
+          method: "DELETE"
+        })
+          .then(res => {
+            if (!res.ok) {
+              throw new Error(`Error: ${res.status}`);
+            }
+            return res.json();
+          })
+          .then(data => {
+            if (data.deletedCount) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your post has been cancelled.",
+                icon: "success"
+              });
+              setMyPosts(myPosts.filter(post => post._id !== _id));
+            }
+          })
+          .catch(err => {
+            console.error('Delete error:', err);
+            Swal.fire('Error', 'Failed to delete the post.', 'error');
+          });
+      }
+    });
+  };
 
   return (
     <div className="p-4 md:p-10">
+      <Helmet>
+        <title>My Eleventh Assignment | My Volunteer Need Posts</title>
+      </Helmet>
+
       <h2 className="text-2xl font-bold text-center mb-6 text-[#0FA4AF]">My Volunteer Need Posts</h2>
 
       {myPosts.length === 0 ? (
@@ -75,7 +93,7 @@ const MyVolunteerNeedPost = () => {
                   <td>{post.deadline}</td>
                   <td className="flex flex-wrap gap-2">
                     <Link to={`/update/${post._id}`}>
-                    <button className="btn btn-sm bg-[#0FA4AF] text-white"><MdModeEdit /></button>
+                      <button className="btn btn-sm bg-[#0FA4AF] text-white"><MdModeEdit /></button>
                     </Link>
                     <button onClick={() => handleDelete(post._id)} className="btn btn-sm bg-[#0FA4AF] text-white"><RiDeleteBinLine /></button>
                   </td>
