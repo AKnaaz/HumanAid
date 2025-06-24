@@ -59,7 +59,7 @@ const BeAVolunteer = () => {
         status: 'requested',
       };
 
-      const res = await axios.post('http://localhost:3000/volunteerRequests', requestInfo);
+      const res = await axios.post('http://localhost:3000/volunteerRequests', requestInfo, {withCredentials: true});
 
       if (res.data?.success) {
         Swal.fire({

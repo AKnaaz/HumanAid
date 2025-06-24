@@ -52,7 +52,9 @@ const router = createBrowserRouter([
         },
         {
           path: "/vols/:id",
-          loader: ({params}) => fetch(`http://localhost:3000/vols/${params.id}`),
+          loader: ({params}) => fetch(`http://localhost:3000/vols/${params.id}`, {
+            credentials: 'include'
+          }),
           element: <PrivateRoute>
             <VolunteerNeedPostsDetails></VolunteerNeedPostsDetails>
           </PrivateRoute>

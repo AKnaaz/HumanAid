@@ -30,7 +30,7 @@ const VolunteerNeedCard = ({ vol }) => {
           <span className="font-bold">Deadline:</span> {deadline}
         </p>
         <div className="card-actions">
-          <Link to={`/vlos/${_id}`}>
+          <Link to={`/vols/${_id}`}>
             <button className="btn bg-[#0FA4AF] text-white">View Details</button>
           </Link>
         </div>

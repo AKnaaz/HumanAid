@@ -38,7 +38,8 @@ const MyVolunteerNeedPost = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/myVols/${_id}`, {
-          method: "DELETE"
+          method: "DELETE",
+          credentials: 'include'
         })
           .then(res => {
             if (!res.ok) {

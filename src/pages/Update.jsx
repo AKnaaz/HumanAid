@@ -47,6 +47,7 @@ const Update = () => {
       headers: {
         "Content-Type": "application/json"
       },
+      credentials: "include",
       body: JSON.stringify(updatedPost)
     })
       .then(res => res.json())

@@ -6,22 +6,29 @@ import { TbCancel } from 'react-icons/tb';
 const MyVolunteerRequestPosts = () => {
   const { user } = useAuth();
   const [requests, setRequests] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchRequests = () => {
-    if (!user) return;
+    if (!user?.email) return;
 
+    setLoading(true);
     fetch(`http://localhost:3000/myVolunteerRequests?email=${user.email}`, {
       credentials: 'include'
     })
       .then(res => res.json())
-      .then(data => setRequests(data.data || []))
-      .catch(err => console.error("Fetch Error:", err));
+      .then(data => {
+        setRequests(data.data || []);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error("Fetch Error:", err);
+        setLoading(false);
+        Swal.fire('Error', 'Failed to load volunteer requests.', 'error');
+      });
   };
 
   useEffect(() => {
-    if (user?.email) {
-      fetchRequests();
-    }
+    fetchRequests();
   }, [user?.email]);
 
   const handleCancel = (_id) => {
@@ -36,7 +43,8 @@ const MyVolunteerRequestPosts = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:3000/myVolunteerRequests/${_id}`, {
-          method: 'DELETE'
+          method: 'DELETE',
+          credentials: 'include'
         })
           .then(res => {
             if (!res.ok) throw new Error(`Error: ${res.status}`);
@@ -44,12 +52,8 @@ const MyVolunteerRequestPosts = () => {
           })
           .then(data => {
             if (data.deletedCount) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your request has been cancelled.",
-                icon: "success"
-              });
-              setRequests(requests.filter(req => req._id !== _id));
+              Swal.fire("Deleted!", "Your request has been cancelled.", "success");
+              setRequests(prev => prev.filter(req => req._id !== _id));
             }
           })
           .catch(err => {
@@ -61,10 +65,12 @@ const MyVolunteerRequestPosts = () => {
   };
 
   return (
-    <div className="p-4 md:p-10">
+    <div className="p-4 md:p-10 min-h-[60vh]">
       <h2 className="text-2xl font-bold text-center mb-6 text-[#0FA4AF]">My Volunteer Request Posts</h2>
 
-      {requests.length === 0 ? (
+      {loading ? (
+        <p className="text-center text-gray-500">Loading your requests...</p>
+      ) : requests.length === 0 ? (
         <p className="text-center text-gray-500">You haven’t requested to be a volunteer for any post yet.</p>
       ) : (
         <div className="overflow-x-auto">
@@ -87,8 +93,9 @@ const MyVolunteerRequestPosts = () => {
                   <td>{req.deadline}</td>
                   <td>
                     <button
-                      className="btn btn-sm bg-[#0FA4AF] text-white"
+                      className="btn btn-sm bg-[#0FA4AF] text-white hover:bg-[#0e8d98]"
                       onClick={() => handleCancel(req._id)}
+                      title="Cancel Request"
                     >
                       <TbCancel size={18} />
                     </button>

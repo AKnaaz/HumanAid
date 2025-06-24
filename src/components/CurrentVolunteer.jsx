@@ -8,10 +8,13 @@ const CurrentVolunteer = () => {
     const [volNeed, setVolNeed] = useState([]);
 
     useEffect(() => {
-    fetch('http://localhost:3000/volsNeedPost')
+    fetch('http://localhost:3000/volsNeedPost', {
+      credentials: 'include'
+    })
       .then(res => res.json())
       .then(data => setVolNeed(data));
   }, []);
+  console.log(volNeed)
     return (
         <div className="p-6 my-20">
             <h2 className="text-3xl font-bold mb-10 text-center">Current Volunteer Needs</h2>
