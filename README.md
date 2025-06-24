@@ -1,12 +1,62 @@
-# React + Vite
+# My Eleventh Assignment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A volunteer management web application that connects volunteers with opportunities posted by organizations or individuals. Users can create accounts, post volunteer needs, apply to help, and manage their requests.
 
-Currently, two official plugins are available:
+## 🌐 Live Site
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+👉 [Live Demo]()
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Project Purpose
+
+The primary goal of this project is to allow users to:
+- Post volunteer opportunities.
+- Browse all available volunteer needs.
+- Apply for volunteer posts.
+- Manage their own posts and applications.
+
+---
+
+## ✨ Key Features
+
+- 🔐 Firebase Authentication (Email/Password, Google Sign-In)
+- 🧑‍💻 User Registration, Login, Logout
+- 📝 Create and manage Volunteer Need Posts
+- 🔍 Search posts by title
+- 📄 View details of each post
+- 🧾 Apply as a volunteer to posts
+- 🧠 React Context API for auth management
+- 🌐 Protected Routes with JWT and Firebase Admin verification (on backend)
+- ⚙️ Dynamic Page Titles using `react-helmet`
+- 🌓 Theme toggle (Light/Dark)
+- 📱 Fully Responsive UI
+- 🎬 Animations using Framer Motion
+- ✅ SweetAlert2 for alert and confirmation dialogs
+
+---
+
+## 🧰 Tech Stack
+
+- **React** (Vite + JSX)
+- **React Router**
+- **Firebase Authentication**
+- **React Helmet**
+- **Framer Motion**
+- **SweetAlert2**
+- **Tailwind CSS / DaisyUI**
+- **Date Picker** (`react-datepicker`)
+- **JWT** (used on backend to secure routes)
+
+---
+
+## 📦 NPM Packages Used
+
+```bash
+npm install react-router
+npm install firebase
+npm install react-helmet
+npm install framer-motion
+npm install sweetalert2
+npm install react-datepicker
+npm install daisyui
