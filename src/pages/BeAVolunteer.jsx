@@ -85,7 +85,7 @@ const BeAVolunteer = () => {
     }
   };
 
-  if (!postData) return <div>Loading...</div>;
+  if (!postData) return <div className="text-center mt-10"><span className="loading loading-ring loading-xl"></span></div>;
 
   return (
     <div className="max-w-3xl mx-auto p-6 mt-10 shadow-lg rounded-lg">
