@@ -74,7 +74,7 @@ const MyVolunteerNeedPost = () => {
       <h2 className="text-2xl font-bold text-center mb-6 text-[#0FA4AF]">My Volunteer Need Posts</h2>
 
       {myPosts.length === 0 ? (
-        <p className="text-center text-gray-500">You have not posted any volunteer need yet.</p>
+        <p className="text-center text-gray-500">You have not posted any volunteer need post yet.</p>
       ) : (
         <div className="overflow-x-auto">
           <table className="table table-zebra w-full">

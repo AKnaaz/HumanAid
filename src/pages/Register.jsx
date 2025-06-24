@@ -19,6 +19,24 @@ const Register = ({from}) => {
         const password = form.password.value
         console.log(email, password)
 
+        const hasUppercase = /[A-Z]/.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const isValidLength = password.length >= 6;
+
+    if (!hasUppercase || !hasLowercase || !isValidLength) {
+        let message = 'Password must:';
+        if (!hasUppercase) message += '\n- include at least one uppercase letter';
+        if (!hasLowercase) message += '\n- include at least one lowercase letter';
+        if (!isValidLength) message += '\n- be at least 6 characters long';
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Weak Password',
+            text: message,
+        });
+        return;
+    }
+
         createUser(email, password)
         .then((result) => {
                 const user = result.user
