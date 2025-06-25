@@ -13,7 +13,7 @@ const MyVolunteerNeedPost = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/myVols?email=${user.email}`, {
+    fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/myVols?email=${user.email}`, {
       credentials: 'include'
     })
       .then(res => {
@@ -37,7 +37,7 @@ const MyVolunteerNeedPost = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/myVols/${_id}`, {
+        fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/myVols/${_id}`, {
           method: "DELETE",
           credentials: 'include'
         })

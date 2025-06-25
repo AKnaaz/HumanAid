@@ -17,7 +17,7 @@ const AllVolunteerNeedPosts = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/vols', {
+      const res = await fetch('https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/vols', {
         credentials: 'include'
       });
       const data = await res.json();

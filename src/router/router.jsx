@@ -27,7 +27,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/allVolunteerNeedPosts",
-          loader: () => fetch("http://localhost:3000/vols"),
+          loader: () => fetch("https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/vols"),
           element: <AllVolunteerNeedPosts></AllVolunteerNeedPosts>
         },
         {
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/vols/:id",
-          loader: ({params}) => fetch(`http://localhost:3000/vols/${params.id}`, {
+          loader: ({params}) => fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/vols/${params.id}`, {
             credentials: 'include'
           }),
           element: <PrivateRoute>
