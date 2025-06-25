@@ -26,7 +26,7 @@ const AddVolunteerNeedPost = () => {
     };
 
     try {
-      const res = await fetch('https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/addVols', {
+      const res = await fetch('https://my-eleventh-assignment-server-mauve.vercel.app/addVols', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

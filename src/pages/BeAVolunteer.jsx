@@ -15,7 +15,7 @@ const BeAVolunteer = () => {
   useEffect(() => {
     if (!user) return;
 
-    fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/vols/${postId}`, {
+    fetch(`https://my-eleventh-assignment-server-mauve.vercel.app/vols/${postId}`, {
       credentials: 'include'
     })
       .then((res) => {
@@ -35,7 +35,7 @@ const BeAVolunteer = () => {
     if (!postData) return;
 
     try {
-      const checkRes = await fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/hasRequested?email=${user.email}&postId=${postData._id}`);
+      const checkRes = await fetch(`https://my-eleventh-assignment-server-mauve.vercel.app/hasRequested?email=${user.email}&postId=${postData._id}`);
       const checkData = await checkRes.json();
 
       if (checkData.hasRequested) {
@@ -59,7 +59,7 @@ const BeAVolunteer = () => {
         status: 'requested',
       };
 
-      const res = await axios.post('https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/volunteerRequests', requestInfo, {withCredentials: true});
+      const res = await axios.post('https://my-eleventh-assignment-server-mauve.vercel.app/volunteerRequests', requestInfo, {withCredentials: true});
 
       if (res.data?.success) {
         Swal.fire({

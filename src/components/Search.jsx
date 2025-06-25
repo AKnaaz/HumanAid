@@ -7,7 +7,7 @@ const Search = () => {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const res = await fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/searchVols?title=${searchTerm}`);
+    const res = await fetch(`https://my-eleventh-assignment-server-mauve.vercel.app/searchVols?title=${searchTerm}`);
     const data = await res.json();
     setVolPosts(data);
   };

@@ -8,7 +8,7 @@ const CurrentVolunteer = () => {
     const [volNeed, setVolNeed] = useState([]);
 
     useEffect(() => {
-    fetch('https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/volsNeedPost', {
+    fetch('https://my-eleventh-assignment-server-mauve.vercel.app/volsNeedPost', {
       credentials: 'include'
     })
       .then(res => res.json())

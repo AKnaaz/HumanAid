@@ -12,7 +12,7 @@ const MyVolunteerRequestPosts = () => {
     if (!user?.email) return;
 
     setLoading(true);
-    fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/myVolunteerRequests?email=${user.email}`, {
+    fetch(`https://my-eleventh-assignment-server-mauve.vercel.app/myVolunteerRequests?email=${user.email}`, {
       credentials: 'include'
     })
       .then(res => res.json())
@@ -42,7 +42,7 @@ const MyVolunteerRequestPosts = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/myVolunteerRequests/${_id}`, {
+        fetch(`https://my-eleventh-assignment-server-mauve.vercel.app/myVolunteerRequests/${_id}`, {
           method: 'DELETE',
           credentials: 'include'
         })

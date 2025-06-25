@@ -14,7 +14,7 @@ const Update = () => {
   const [deadline, setDeadline] = useState(new Date());
 
   useEffect(() => {
-    fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/vols/${id}`, {
+    fetch(`https://my-eleventh-assignment-server-mauve.vercel.app/vols/${id}`, {
       credentials: 'include'
     })
       .then(res => {
@@ -42,7 +42,7 @@ const Update = () => {
 
     updatedPost.deadline = deadline.toISOString().split('T')[0];
 
-    fetch(`https://my-eleventh-assignment-server-8xova3el3-aknaazs-projects.vercel.app/vols/${id}`, {
+    fetch(`https://my-eleventh-assignment-server-mauve.vercel.app/vols/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json"
