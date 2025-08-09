@@ -12,7 +12,7 @@ const Footer = () => {
   </div>
   <nav>
     <h6 className="footer-title">LEGAL</h6>
-    <Link to="/*">Term & Conditions</Link>
+    <Link to="/terms">Term & Conditions</Link>
     <Link to="/about">About Us</Link>
   </nav>
   <nav>

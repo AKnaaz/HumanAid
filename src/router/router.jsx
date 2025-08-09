@@ -14,6 +14,7 @@ import PrivateRoute from "../routes/PrivateRoute";
 import BeAVolunteer from "../pages/BeAVolunteer";
 import Update from "../pages/Update";
 import About from "../components/About.jsx";
+import TermsAndConditions from "../components/TermsAndConditions.jsx";
 
 
 const router = createBrowserRouter([
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
           element: <PrivateRoute>
             <Update></Update>
           </PrivateRoute>
+        },
+        {
+          path: "/terms",
+          element: <TermsAndConditions></TermsAndConditions>
         }
     ]
   },
