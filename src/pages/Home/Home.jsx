@@ -4,6 +4,7 @@ import WhyVolunteerWithUs from '../../components/WhyVolunteerWithUs';
 import VolunteerTestimonials from '../../components/VolunteerTestimonials';
 import CurrentVolunteer from '../../components/CurrentVolunteer';
 import { Helmet } from 'react-helmet';
+import PartnersSponsors from '../../components/PartnersSponsors';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
             <CurrentVolunteer></CurrentVolunteer>
             <WhyVolunteerWithUs></WhyVolunteerWithUs>
             <VolunteerTestimonials></VolunteerTestimonials>
+            <PartnersSponsors></PartnersSponsors>
         </div>
     );
 };
