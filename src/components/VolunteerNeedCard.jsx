@@ -14,7 +14,7 @@ const VolunteerNeedCard = ({ vol }) => {
       whileHover={{ scale: 1.03 }}
       viewport={{ once: true }}
     >
-      <figure className="px-10 pt-10">
+      <figure className="pt-10">
         <img
           src={thumbnail}
           alt={title}

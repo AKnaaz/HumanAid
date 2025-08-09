@@ -13,6 +13,7 @@ import VolunteerNeedPostsDetails from "../pages/VolunteerNeedPostsDetails";
 import PrivateRoute from "../routes/PrivateRoute";
 import BeAVolunteer from "../pages/BeAVolunteer";
 import Update from "../pages/Update";
+import About from "../components/About.jsx";
 
 
 const router = createBrowserRouter([
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
           element: <PrivateRoute>
             <ManageMyPosts></ManageMyPosts>
           </PrivateRoute>
+        },
+        {
+          path: "/about",
+          element: <About></About>
         },
         {
           path: "/login",

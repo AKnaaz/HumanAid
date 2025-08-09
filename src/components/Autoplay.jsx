@@ -51,9 +51,9 @@ const Autoplay = () => {
                                 backgroundRepeat: `no-repeat`
                             }}
                             >
-                <div className="text-center bg-[#0FA4AF] p-2 rounded-2xl">
-                    <h2 className="text-2xl md:text-xl font-bold">{slide.title}</h2>
-                    <h2 className="text-2xl md:text-sm">{slide.des}</h2>
+                <div className="text-center bg-[#0FA4AF] p-1 md:p-2 rounded-2xl">
+                    <h2 className="md:text-xl font-bold">{slide.title}</h2>
+                    <h2 className="text-xs md:text-lg">{slide.des}</h2>
                 </div>
 
                             </div>
