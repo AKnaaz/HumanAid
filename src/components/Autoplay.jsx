@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 const slides = [
         {
             id: 1,
-            img: "https://i.postimg.cc/LsvVhTk4/heal.webp",
+            img: "https://i.postimg.cc/zX6XFfh7/h2.avif",
             title: "Support Healthcare Initiatives",
             des: "Join hands to provide medical aid and spread health awareness in underprivileged communities."
         },
@@ -43,7 +43,7 @@ const Autoplay = () => {
                 {
                     slides.map((slide) =>(
                         <div key={slide.id}>
-                            <div className="h-64 md:h-80 lg:h-96 bg-cover bg-center flex flex-col justify-end p-6 text-white" 
+                            <div className="h-64 md:h-80 lg:h-[450px] bg-cover bg-center flex flex-col justify-end p-6 text-white" 
                             style={{
                                 backgroundImage: `url(${slide.img})`,
                                 backgroundSize: `cover`,

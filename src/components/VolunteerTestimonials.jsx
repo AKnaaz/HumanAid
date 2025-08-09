@@ -31,7 +31,7 @@ const VolunteerTestimonials = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3 }}
     >
-      <h2 className="text-3xl font-bold mb-10">What Volunteers Say</h2>
+      <h2 className="text-xl md:text-3xl font-bold mb-10">What Volunteers Say</h2>
 
       <div className="max-w-7xl mx-auto grid gap-6 md:grid-cols-3">
         {testimonials.map((testimonial, index) => (

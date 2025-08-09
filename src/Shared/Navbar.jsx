@@ -43,7 +43,7 @@ const Navbar = () => {
   const toggleDropdown = () => setIsOpen((prev) => !prev);
 
   return (
-      <div className="navbar container mx-auto shadow-sm px-4 sticky top-0 w-full z-50 bg-[#0FA4AF]">
+      <div className="navbar shadow-sm px-6 sticky top-0 w-full z-50 bg-[#0FA4AF]">
         <div className="navbar-start">
           <div className="dropdown lg:hidden">
             <div tabIndex={0} role="button" className="btn btn-ghost">

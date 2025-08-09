@@ -7,7 +7,7 @@ const TermsAndConditions = () => {
       <Helmet>
         <title>My Eleventh Assignment | Terms and Conditions</title>
       </Helmet>
-        <h1 className="text-2xl font-bold mb-6 text-center text-[#0FA4Af]">Terms and Conditions</h1>
+        <h1 className="text-xl md:text-2xl font-bold mb-6 text-center text-[#0FA4Af]">Terms and Conditions</h1>
 
         <p className="mb-4">
             Welcome to HumanAid! By using our platform, you agree to comply with and be bound by the following terms and conditions. Please read them carefully.

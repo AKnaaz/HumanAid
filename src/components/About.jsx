@@ -8,7 +8,7 @@ const About = () => {
         <title>My Eleventh Assignment | About Us</title>
       </Helmet>
       <div className='mb-6 text-center'>
-        <h2 className="text-2xl font-bold text-[#0FA4AF]">About Our Volunteer Platform</h2>
+        <h2 className="text-xl md:text-3xl font-bold text-[#0FA4AF]">About Our Volunteer Platform</h2>
 
         <p className="text-[15px] leading-relaxed mt-2">
           Our platform is designed to bring together two important groups of people in the spirit of community service and social responsibility.

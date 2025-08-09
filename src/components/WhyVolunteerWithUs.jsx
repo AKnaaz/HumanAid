@@ -4,14 +4,14 @@ import volImg2 from "../assets/volunteer2.jpg";
 
 const WhyVolunteerWithUs = () => {
     return (
-        <div className="my-20 px-4 max-w-7xl mx-auto">
+        <div className="my-20 px-6">
             <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
                 className="text-center"
             >
-                <h2 className="text-3xl font-bold mb-10">Why Volunteer With Us?</h2>
+                <h2 className="text-xl md:text-3xl font-bold mb-10">Why Volunteer With Us?</h2>
 
                 <div className="w-full flex justify-center items-center mb-12">
                     <motion.img
@@ -23,7 +23,7 @@ const WhyVolunteerWithUs = () => {
                         transition={{ delay: 0.5, duration: 0.8 }}
                     />
                 </div>
-                <p className="text-gray-600 leading-relaxed text-center">
+                <p className="leading-relaxed text-center">
                     Make a meaningful difference in your community by offering your time, passion, and unique skills.
                     Every hour you dedicate—whether it’s supporting healthcare initiatives, empowering young minds
                     through education, or caring for animals in need—creates a ripple of positive change that touches

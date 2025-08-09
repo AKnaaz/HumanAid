@@ -71,7 +71,7 @@ const MyVolunteerNeedPost = () => {
         <title>My Eleventh Assignment | My Volunteer Need Posts</title>
       </Helmet>
 
-      <h2 className="text-2xl font-bold text-center mb-6 text-[#0FA4AF]">My Volunteer Need Posts</h2>
+      <h2 className="text-xl md:text-2xl font-bold text-center mb-6 text-[#0FA4AF]">My Volunteer Need Posts</h2>
 
       {myPosts.length === 0 ? (
         <p className="text-center text-gray-500">You have not posted any volunteer need post yet.</p>

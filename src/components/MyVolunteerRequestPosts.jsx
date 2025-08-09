@@ -66,7 +66,7 @@ const MyVolunteerRequestPosts = () => {
 
   return (
     <div className="p-4 md:p-10 min-h-[60vh]">
-      <h2 className="text-2xl font-bold text-center mb-6 text-[#0FA4AF]">My Volunteer Request Posts</h2>
+      <h2 className="text-xl md:text-2xl font-bold text-center mb-6 text-[#0FA4AF]">My Volunteer Request Posts</h2>
 
       {loading ? (
         <p className="text-center text-gray-500">Loading your requests...</p>

@@ -37,12 +37,12 @@ const partners = [
 const PartnersSponsors = () => {
   return (
     <motion.section
-      className="max-w-7xl mx-auto py-12 px-6 bg-gray-50 rounded-md shadow-md"
+      className="py-12 px-6 rounded-md shadow-md"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
     >
-      <h2 className="text-3xl font-bold mb-10 text-center">
+      <h2 className="text-xl md:text-3xl font-bold mb-10 text-center">
         Our Partners & Sponsors
       </h2>
 
@@ -53,15 +53,15 @@ const PartnersSponsors = () => {
             href={website}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center bg-white rounded-lg p-4 shadow hover:shadow-lg transition-shadow cursor-pointer"
+            className="flex flex-col items-center rounded-lg p-4 shadow hover:shadow-lg transition-shadow cursor-pointer"
           >
             <img
               src={logo}
               alt={`${name} Logo`}
               className="w-24 h-24 object-contain mb-4"
             />
-            <h3 className="text-lg font-semibold text-center text-gray-800">{name}</h3>
-            <p className="text-sm text-gray-600 text-center">{description}</p>
+            <h3 className="text-lg font-semibold text-center">{name}</h3>
+            <p className="text-sm text-center">{description}</p>
           </a>
         ))}
       </div>

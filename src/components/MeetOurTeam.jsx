@@ -38,12 +38,12 @@ const MeetOurTeam = () => {
   return (
     <div className="my-20">
       <motion.section
-        className="py-10 px-4 text-center max-w-7xl mx-auto"
+        className="py-10 px-6 text-center"
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <h2 className="text-3xl font-bold mb-10">Meet Our Team</h2>
+        <h2 className="text-xl md:text-3xl font-bold mb-10">Meet Our Team</h2>
 
         <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
           {teamMembers.map(({ name, role, description, img }, index) => (
