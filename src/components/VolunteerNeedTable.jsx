@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const VolunteerNeedTable = ({ volunteerPosts }) => {
   return (
-    <div className="overflow-x-auto mt-10 w-full md:px-6">
+    <div className="overflow-x-auto mt-10 w-full md:px-4">
       <h2 className="text-xl md:text-3xl font-bold mb-4 text-center text-[#0FA4AF]">
         All Volunteer Need Posts (Table View)
       </h2>

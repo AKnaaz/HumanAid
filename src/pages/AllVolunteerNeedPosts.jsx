@@ -48,7 +48,7 @@ const AllVolunteerNeedPosts = () => {
     return <Loading></Loading>;
   }
   return (
-    <div className='w-11/12 mx-auto p-5 m-5'>
+    <div className='p-4 m-5'>
       <Helmet>
         <title>My Eleventh Assignment | All Volunteer Need Posts</title>
       </Helmet>
