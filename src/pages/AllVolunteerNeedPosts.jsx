@@ -64,7 +64,7 @@ const AllVolunteerNeedPosts = () => {
 
       {
         viewMode === "card" ? (
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+          <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
             {vols.map(vol => (
               <AllVolunteerNeedPostsCard key={vol._id} vol={vol} />
             ))}

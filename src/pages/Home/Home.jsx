@@ -16,9 +16,9 @@ const Home = () => {
             <Autoplay></Autoplay>
             <CurrentVolunteer></CurrentVolunteer>
             <WhyVolunteerWithUs></WhyVolunteerWithUs>
-            <VolunteerTestimonials></VolunteerTestimonials>
             <MeetOurTeam></MeetOurTeam>
             <PartnersSponsors></PartnersSponsors>
+            <VolunteerTestimonials></VolunteerTestimonials>
         </div>
     );
 };

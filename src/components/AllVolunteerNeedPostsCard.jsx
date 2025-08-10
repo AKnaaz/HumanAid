@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 
 const AllVolunteerNeedPostsCard = ({vol}) => {
 
-    const {_id, thumbnail, title, category, deadline} = vol;
+    const {_id, thumbnail, title, description} = vol;
 
     return (
           <motion.div
@@ -25,10 +25,7 @@ const AllVolunteerNeedPostsCard = ({vol}) => {
               <div className="card-body items-center text-center">
                 <h2 className="card-title">{title}</h2>
                 <p>
-                  <span className="font-bold">Category:</span> {category}
-                </p>
-                <p>
-                  <span className="font-bold">Deadline:</span> {deadline}
+                  <span className="font-bold">Description:</span> {description}
                 </p>
                 <div className="card-actions">
                   <Link to={`/vols/${_id}`}>
