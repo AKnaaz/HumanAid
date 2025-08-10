@@ -2,19 +2,30 @@ import React, { useEffect, useState } from 'react';
 import VolunteerNeedCard from './VolunteerNeedCard';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { Link } from 'react-router';
+import Loading from '../Shared/Loading';
 
 const CurrentVolunteer = () => {
 
     const [volNeed, setVolNeed] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+      setLoading(true);
     fetch('https://my-eleventh-assignment-server-mauve.vercel.app/volsNeedPost', {
       credentials: 'include'
     })
       .then(res => res.json())
-      .then(data => setVolNeed(data));
+      .then(data => {
+        setVolNeed(data)
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, []);
   console.log(volNeed)
+  if (loading) {
+    return <Loading></Loading>;
+  }
+
     return (
         <div className="p-6 my-20">
             <h2 className="text-xl md:text-3xl font-bold mb-10 text-center">Current Volunteer Needs</h2>

@@ -15,8 +15,6 @@ const VolunteerNeedTable = ({ volunteerPosts }) => {
               <th className="p-2 md:p-3">#</th>
               <th className="p-2 md:p-3">Thumbnail</th>
               <th className="p-2 md:p-3">Title</th>
-              <th className="p-2 md:p-3">Category</th>
-              <th className="p-2 md:p-3">Deadline</th>
               <th className="p-2 md:p-3">Action</th>
             </tr>
           </thead>
@@ -32,8 +30,6 @@ const VolunteerNeedTable = ({ volunteerPosts }) => {
                   />
                 </td>
                 <td className="whitespace-nowrap p-2 md:p-3">{vol.title}</td>
-                <td className="whitespace-nowrap p-2 md:p-3">{vol.category}</td>
-                <td className="whitespace-nowrap p-2 md:p-3">{vol.deadline}</td>
                 <td className="p-2 md:p-3">
                   <Link to={`/vols/${vol._id}`}>
                     <button className="btn btn-xs sm:btn-sm md:btn-md bg-[#0FA4AF] text-white">

@@ -4,6 +4,7 @@ import AllVolunteerNeedPostsCard from '../components/AllVolunteerNeedPostsCard';
 import VolunteerNeedTable from '../components/VolunteerNeedTable';
 import Search from '../components/Search';
 import { Helmet } from 'react-helmet';
+import Loading from '../Shared/Loading';
 
 const AllVolunteerNeedPosts = () => {
   const initialData = useLoaderData();
@@ -43,7 +44,9 @@ const AllVolunteerNeedPosts = () => {
       window.removeEventListener("volViewModeChange", handleViewModeChange);
     };
   }, []);
-
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className='w-11/12 mx-auto p-5 m-5'>
       <Helmet>
